@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Edible Equations</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Amatic+SC">
+
+<style>
+body, html {
+  height: 100%;
+  background-color: #f8f9fa;
+}
+
+body, h1, h2, h3, h4, h5, h6 {
+  font-family: "Amatic SC", sans-serif;
+  color: #343a40;
+}
+
+.menu {
+  display: none;
+}
+
+.divider {
+  width: 5px;
+  height: 0px;
+  display: inline-block;
+}
+
+.column {
+  float: left;
+  width: 25%;
+  padding: 10px;
+}
+
+.column img {
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+.column img:hover {
+  opacity: 1;
+}
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.container {
+  position: relative;
+  display: none;
+}
+
+#imgtext {
+  position: absolute;
+  bottom: 15px;
+  left: 15px;
+  color: white;
+  font-size: 20px;
+}
+
+.closebtn {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  color: white;
+  font-size: 35px;
+  cursor: pointer;
+}
+
+.bgimg {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url("https://lh3.googleusercontent.com/d/1XuOZe8ah2V0d2Z8cDRgzsA3GGLC4e32w=s2200?authuser=0");
+  min-height: 90%;
+}
+
+.thumbnail {
+  max-width: 220px;
+  max-height: 220px;
+  object-fit: cover;
+  margin: 5px;
+  border-radius: 10px;
+}
+
+.w3-bar {
+  background-color: #343a40;
+  border-bottom: 4px solid #f8cda9;
+}
+
+.w3-bar-item {
+  color: #f8cda9;
+}
+
+.w3-bar-item:hover {
+  background-color: #f8cda9;
+  color: #343a40;
+}
+
+.w3-display-container {
+  color: #f8cda9;
+}
+
+.w3-tag {
+  background-color: #f8cda9;
+  color: #343a40;
+}
+
+.w3-button {
+  background-color: #343a40;
+  color: #f8cda9;
+}
+
+.w3-button:hover {
+  background-color: #f8cda9;
+  color: #343a40;
+}
+
+.w3-container {
+  background-color: #ffffff;
+}
+
+.w3-padding-64 {
+  background-color: #f8f9fa;
+}
+
+.tablink {
+  background-color: #343a40;
+  color: #f8cda9;
+}
+
+.tablink:hover {
+  background-color: #f8cda9;
+  color: #343a40;
+}
+
+.w3-dark-grey {
+  background-color: #343a40;
+  color: #f8cda9;
+}
+
+.w3-dark-grey:hover {
+  background-color: #f8cda9;
+  color: #343a40;
+}
+
+</style>
+</head>
+<body>
+
+<!-- Navbar (sit on top) -->
+<div class="w3-top w3-hide-small">
+  <div class="w3-bar w3-xlarge w3-black w3-opacity w3-hover-opacity-off" id="myNavbar">
+    <a href="#" class="w3-bar-item w3-button">HOME</a>
+    <a href="#menu" class="w3-bar-item w3-button">MENU</a>
+    <a href="#cart" class="w3-bar-item w3-button">CART</a>
+    <a href="#ingredients" class="w3-bar-item w3-button">INGREDIENTS</a>
+  </div>
+</div>
+  
+<!-- Header with image -->
+<header class="bgimg w3-display-container w3-grayscale-min" id="home">
+  <div class="w3-display-bottomleft w3-padding">
+    <span class="w3-tag w3-xlarge">Open from 10am to 12pm</span>
+  </div>
+  <div class="w3-display-middle w3-center">
+    <span class="w3-text-white w3-hide-small" style="font-size:100px">Edible<br>Equations</span>
+    <span class="w3-text-white w3-hide-large w3-hide-medium" style="font-size:60px"><b>thin<br>CRUST PIZZA</b></span>
+    <p><a href="#menu" class="w3-button w3-xxlarge w3-black">Let me see the menu</a></p>
+  </div>
+</header>
+
+<!-- Menu Container -->
+<div class="w3-container w3-black w3-padding-64 w3-xxlarge" id="menu">
+  <div class="w3-content">
+  
+    <h1 class="w3-center w3-jumbo" style="margin-bottom:64px">THE MENU</h1>
+    <div class="w3-row w3-center w3-border w3-border-dark-grey">
+      <a href="javascript:void(0)" onclick="openMenu(event, 'Chicken');" id="myLinkChicken">
+        <div class="w3-col s4 tablink w3-padding-large w3-hover-red">Chicken</div>
+      </a>
+      <a href="javascript:void(0)" onclick="openMenu(event, 'Beef');" id="myLinkBeef">
+        <div class="w3-col s4 tablink w3-padding-large w3-hover-red">Beef</div>
+      </a>
+      <a href="javascript:void(0)" onclick="openMenu(event, 'Pasta and Rice');" id="myLinkPastaRice">
+        <div class="w3-col s4 tablink w3-padding-large w3-hover-red">Pasta and Rice</div>
+      </a>
+      <a href="javascript:void(0)" onclick="openMenu(event, 'Vegetarian');" id="myLinkVegetarian">
+        <div class="w3-col s4 tablink w3-padding-large w3-hover-red">Vegetarian</div>
+      </a>
+      <a href="javascript:void(0)" onclick="openMenu(event, 'Salad');" id="myLinkSalad">
+        <div class="w3-col s4 tablink w3-padding-large w3-hover-red">Salad</div>
+      </a>
+      <a href="javascript:void(0)" onclick="openMenu(event, 'Lamb');" id="myLinkLamb">
+        <div class="w3-col s4 tablink w3-padding-large w3-hover-red">Lamb</div>
+      </a>
+      <a href="javascript:void(0)" onclick="openMenu(event, 'Fish');" id="myLinkFish">
+        <div class="w3-col s4 tablink w3-padding-large w3-hover-red">Fish</div>
+      </a>
+      <a href="javascript:void(0)" onclick="openMenu(event, 'Dessert');" id="myLinkDessert">
+        <div class="w3-col s4 tablink w3-padding-large w3-hover-red">Desserts</div>
+      </a>
+      <a href="javascript:void(0)" onclick="openMenu(event, 'Misc');" id="myLinkMisc">
+        <div class="w3-col s4 tablink w3-padding-large w3-hover-red">Misc</div>
+      </a>
+    </div>
+
+    <div id="Chicken" class="w3-container menu w3-padding-32 w3-white">
+      <h1><b>Butter chicken and basmati rice</b> <button class="w3-right w3-tag w3-dark-grey w3-round" onclick="add_recipe('Butter chicken and basmati rice')">Add</button><div class="w3-right w3-tag w3-white"><button class="w3-right w3-tag w3-dark-grey w3-round" onclick="remove_recipe('Butter chicken and basmati rice')">Remove</button></div></h1>
+      <hr>
+      
+      <h1><b>Creamy chicken and mushroom pie</b> <button class="w3-right w3-tag w3-dark-grey w3-round" onclick="add_recipe('Creamy chicken and mushroom pie')">Add</button><div class="w3-right w3-tag w3-white"><button class="w3-right w3-tag w3-dark-grey w3-round" onclick="remove_recipe('Creamy chicken and mushroom pie')">Remove</button></div></h1>
+      <p class="w3-text-grey"></p>
+      <hr>
+	  
+	  <h1><b>Hoisin Chicken and Plum Stir Fry</b> <button class="w3-right w3-tag w3-dark-grey w3-round" onclick="add_recipe('Hoisin Chicken and Plum Stir Fry')">Add</button><div class="w3-right w3-tag w3-white"><button class="w3-right w3-tag w3-dark-grey w3-round" onclick="remove_recipeHoisin Chicken and Plum Stir Fry')">Remove</button></div></h1>
+      <p class="w3-text-grey"></p>
+      <hr>
+	  
+      <h1><b>Chicken in Creamy Peppercorn Sauce</b> <button class="w3-right w3-tag w3-dark-grey w3-round" onclick="add_recipe('Chicken in Creamy Peppercorn Sauce')">Add</button><div class="w3-right w3-tag w3-white"><button class="w3-right w3-tag w3-dark-grey w3-round" onclick="remove_recipe('Chicken in Creamy Peppercorn Sauce')">Remove</button></div></h1>
+      <p class="w3-text-grey"></p>
+      <hr>
+
+      <h1><b>Thai style peanut chicken noodles</b> <button class="w3-right w3-tag w3-dark-grey w3-round" onclick="add_recipe('Thai style peanut chicken noodles')">Add</button><div class="w3-right w3-tag w3-white"><button class="w3-right w3-tag w3-dark-grey w3-round" onclick="remove_recipe('Thai style peanut chicken noodles')">Remove</button></div></h1>
+      <p class="w3-text-grey"></p>
+      <hr>
+
+      <h1><b>Sweet and sour pineapple chicken</b> <button class="w3-right w3-tag w3-dark-grey w3-round" onclick="add_recipe('Sweet and sour pineapple chicken')">Add</button><div class="w3-right w3-tag w3-white"><button class="w3-right w3-tag w3-dark-grey w3-round" onclick="remove_recipe('Sweet and sour pineapple chicken')">Remove</button></div></h1>
+      <p class="w3-text-grey"></p>
+      <hr>
+	  
+	  <h1><b>Fragrant chicken coconut curry</b> <button class="w3-right w3-tag w3-dark-grey w3-round" onclick="add_recipe('Fragrant chicken coconut curry')">Add</button><div class="w3-right w3-tag w3-white"><button class="w3-right w3-tag w3-dark-grey w3-round" onclick="remove_recipe('Fragrant chicken coconut curry')">Remove</button></div></h1>
+      <p class="w3-text-grey"></p>
+      <hr>
+	  
+	  <h1><b>Chicken and Halloumi Shawarma</b> <button class="w3-right w3-tag w3-dark-grey w3-round" onclick="add_recipe('Chicken and Halloumi Shawarma')">Add</button><div class="w3-right w3-tag w3-white"><button class="w3-right w3-tag w3-dark-grey w3-round" onclick="remove_recipe('Chicken and Halloumi Shawarma')">Remove</button></div></h1>
+      <p class="w3-text-grey"></p>
+      <hr>
+	  
+	  <h1><b>Chicken & Serrano Ham Saltimbocca w/Mushroom Risotto</b> <button class="w3-right w3-tag w3-dark-grey w3-round" onclick="add_recipe('Chicken & Serrano Ham Saltimbocca w/Mushroom Risotto')">Add</button><div class="w3-right w3-tag w3-white"><button class="w3-right w3-tag w3-dark-grey w3-round" onclick="remove_recipe('Chicken & Serrano Ham Saltimbocca w/Mushroom Risotto')">Remove</button></div></h1>
+      <p class="w3-text-grey"></p>
+      <hr>
+
+      <h1><b>Coronation chicken curry</b> <button class="w3-right w3-tag w3-dark-grey w3-round" onclick="add_recipe('Coronation chicken curry')">Add</button><div class="w3-right w3-tag w3-white"><button class="w3-right w3-tag w3-dark-grey w3-round" onclick="remove_recipe('Coronation chicken curry')">Remove</button></div></h1>
+      <p class="w3-text-grey"></p>
+    </div>
+
+	<div id="Beef" class="w3-container menu w3-padding-32 w3-white">
+	  <h1><b>Beany beef tostadas rapidas</b> <button class="w3-right w3-tag w3-dark-grey w3-round" onclick="add_recipe('Beany beef tostadas rapidas')">Add</button><div class="w3-right w3-tag w3-white"><button class="w3-right w3-tag w3-dark-grey w3-round" onclick="remove_recipe('Beany beef tostadas rapidas')">Remove</button></div></h1>
+      <p class="w3-text-grey"></p>
+      <hr>
+	  
+	  <h1><b>Beef and cheesy mash pie</b> <button class="w3-right w3-tag w3-dark-grey w3-round" onclick="add_recipe('Beef and cheesy mash pie')">Add</button><div class="w3-right w3-tag w3-white"><button class="w3-right w3-tag w3-dark-grey w3-round" onclick="remove_recipe('Beef and cheesy mash pie')">Remove</button></div></h1>
+      <p class="w3-text-grey"></p>
+      <hr>
+	  
+	  <h1><b>Thai Style Beef Bowl with Peppers and Rice</b> <button class="w3-right w3-tag w3-dark-grey w3-round" onclick="add_recipe('Thai Style Beef Bowl with Peppers and Rice')">Add</button><div class="w3-right w3-tag w3-white"><button class="w3-right w3-tag w3-dark-grey w3-round" onclick="remove_recipe('Thai Style Beef Bowl with Peppers and Rice')">Remove</button></div></h1>
+      <p class="w3-text-grey"></p>
+      <hr>
+	  
+	  <h1><b>Beef mince, bean and red wine hotpot</b> <button class="w3-right w3-tag w3-dark-grey w3-round" onclick="add_recipe('Beef mince, bean and red wine hotpot')">Add</button><div class="w3-right w3-tag w3-white"><button class="w3-right w3-tag w3-dark-grey w3-round" onclick="remove_recipe('Beef mince, bean and red wine hotpot')">Remove</button></div></h1>
+      <p class="w3-text-grey"></p>
+      <hr>
+	  
+	  <h1><b>Bulgogi Beef Bowl</b> <button class="w3-right w3-tag w3-dark-grey w3-round" onclick="add_recipe('Bulgogi Beef Bowl')">Add</button><div class="w3-right w3-tag w3-white"><button class="w3-right w3-tag w3-dark-grey w3-round" onclick="remove_recipe('Bulgogi Beef Bowl')">Remove</button></div></h1>
+      <p class="w3-text-grey"></p>
+      <hr>
+	  
+	  <h1><b>Cajun beef mince and beans jacky-p</b> <button class="w3-right w3-tag w3-dark-grey w3-round" onclick="add_recipe('Cajun beef mince and beans jacky-p')">Add</button><div class="w3-right w3-tag w3-white"><button class="w3-right w3-tag w3-dark-grey w3-round" onclick="remove_recipe('Cajun beef mince and beans jacky-p')">Remove</button></div></h1>
+      <p class="w3-text-grey"></p>
+      <hr>
+	  
+	  <h1><b>Caprese quesadillas and wedges</b> <button class="w3-right w3-tag w3-dark-grey w3-round" onclick="add_recipe('Caprese quesadillas and wedges')">Add</button><div class="w3-right w3-tag w3-white"><button class="w3-right w3-tag w3-dark-grey w3-round" onclick="remove_recipe('Caprese quesadillas and wedges')">Remove</button></div></h1>
+      <p class="w3-text-grey"></p>
+      <hr>
+	  
+	  <h1><b>Cheesy Chorizo Topped Beef Enchiladas</b> <button class="w3-right w3-tag w3-dark-grey w3-round" onclick="add_recipe('Cheesy Chorizo Topped Beef Enchiladas')">Add</button><div class="w3-right w3-tag w3-white"><button class="w3-right w3-tag w3-dark-grey w3-round" onclick="remove_recipe('Cheesy Chorizo Topped Beef Enchiladas')">Remove</button></div></h1>
+      <p class="w3-text-grey"></p>
+      <hr>
+	  
+	  <h1><b>Fragrant Beef and Mushroom Stir Fry</b> <button class="w3-right w3-tag w3-dark-grey w3-round" onclick="add_recipe('Fragrant Beef and Mushroom Stir Fry')">Add</button><div class="w3-right w3-tag w3-white"><button class="w3-right w3-tag w3-dark-grey w3-round" onclick="remove_recipe('Fragrant Beef and Mushroom Stir Fry')">Remove</button></div></h1>
+      <p class="w3-text-grey"></p>
+      <hr>
+	  
+	  <h1><b>Mexican style beef loaded wedges</b> <button class="w3-right w3-tag w3-dark-grey w3-round" onclick="add_recipe('Mexican style beef loaded wedges')">Add</button><div class="w3-right w3-tag w3-white"><button class="w3-right w3-tag w3-dark-grey w3-round" onclick="remove_recipe('Mexican style beef loaded wedges')">Remove</button></div></h1>
+      <p class="w3-text-grey"></p>
+      <hr>
+	  
+	  <h1><b>Cheesy melt in the middle beef burger</b> <button class="w3-right w3-tag w3-dark-grey w3-round" onclick="add_recipe('Cheesy melt in the middle beef burger')">Add</button><div class="w3-right w3-tag w3-white"><button class="w3-right w3-tag w3-dark-grey w3-round" onclick="remove_recipe('Cheesy melt in the middle beef burger')">Remove</button></div></h1>
+      <p class="w3-text-grey"></p>
+      <hr>
+	  
+	  <h1><b>Tex Mex style beef mince tacos</b> <button class="w3-right w3-tag w3-dark-grey w3-round" onclick="add_recipe('Tex Mex style beef mince tacos')">Add</button><div class="w3-right w3-tag w3-white"><button class="w3-right w3-tag w3-dark-grey w3-round" onclick="remove_recipe('Tex Mex style beef mince tacos')">Remove</button></div></h1>
+      <p class="w3-text-grey"></p>
+      <hr>
+	  
+	  <h1><b>Harissa spiced beef pilaf</b> <button class="w3-right w3-tag w3-dark-grey w3-round" onclick="add_recipe('Harissa spiced beef pilaf')">Add</button><div class="w3-right w3-tag w3-white"><button class="w3-right w3-tag w3-dark-grey w3-round" onclick="remove_recipe('Harissa spiced beef pilaf')">Remove</button></div></h1>
+      <p class="w3-text-grey"></p>
+      <hr>
+	  
+	  <h1><b>Honey garlic meatballs and noodles</b> <button class="w3-right w3-tag w3-dark-grey w3-round" onclick="add_recipe('Honey garlic pork meatballs and noodles')">Add</button><div class="w3-right w3-tag w3-white"><button class="w3-right w3-tag w3-dark-grey w3-round" onclick="remove_recipe('Honey garlic pork meatballs and noodles')">Remove</button></div></h1>
+      <p class="w3-text-grey"></p>
+      <hr>
+	  
+	  <h1><b>Beef rogan josh curry</b> <button class="w3-right w3-tag w3-dark-grey w3-round" onclick="add_recipe('Beef rogan josh curry')">Add</button><div class="w3-right w3-tag w3-white"><button class="w3-right w3-tag w3-dark-grey w3-round" onclick="remove_recipe('Beef rogan josh curry')">Remove</button></div></h1>
+      <p class="w3-text-grey"></p>
+      <hr>
+	  
+	  <h1><b>Korma Spiced Beef Pilaf and Mango Chutney</b> <button class="w3-right w3-tag w3-dark-grey w3-round" onclick="add_recipe('Korma Spiced Beef Pilaf and Mango Chutney')">Add</button><div class="w3-right w3-tag w3-white"><button class="w3-right w3-tag w3-dark-grey w3-round" onclick="remove_recipe('Korma Spiced Beef Pilaf and Mango Chutney')">Remove</button></div></h1>
+      <p class="w3-text-grey"></p>
+      <hr>
+	  
+	  <h1><b>Smoky BBQ chicken & black bean loaded wedges</b> <span class="w3-tag w3-red w3-round">Hot!</span><button class="w3-right w3-tag w3-dark-grey w3-round" onclick="add_recipe('Smoky BBQ chicken & black bean loaded wedges')">Add</button><div class="w3-right w3-tag w3-white"><button class="w3-right w3-tag w3-dark-grey w3-round" onclick="remove_recipe('Smoky BBQ chicken & black bean loaded wedges')">Remove</button></div></h1>
+      <p class="w3-text-grey"></p>
+      <hr>
+	  
+	  <h1><b>Teriyaki Lemongrass Beef</b> <button class="w3-right w3-tag w3-dark-grey w3-round" onclick="add_recipe('Teriyaki Lemongrass Beef')">Add</button><div class="w3-right w3-tag w3-white"><button class="w3-right w3-tag w3-dark-grey w3-round" onclick="remove_recipe('Teriyaki Lemongrass Beef')">Remove</button></div></h1>
+      <p class="w3-text-grey"></p>
+      <hr>
+	  
+	  <h1><b>Herby burgers and wedges</b> <button class="w3-right w3-tag w3-dark-grey w3-round" onclick="add_recipe('Herby burgers and wedges')">Add</button><div class="w3-right w3-tag w3-white"><button class="w3-right w3-tag w3-dark-grey w3-round" onclick="remove_recipe('Herby burgers and wedges')">Remove</button></div></h1>
+      <p class="w3-text-grey"></p>
+	  <hr>
+	  
+	  <h1><b>Stir-fried honey sesame beef noodles</b> <button class="w3-right w3-tag w3-dark-grey w3-round" onclick="add_recipe('Stir-fried honey sesame beef noodles')">Add</button><div class="w3-right w3-tag w3-white"><button class="w3-right w3-tag w3-dark-grey w3-round" onclick="remove_recipe('Stir-fried honey sesame beef noodles')">Remove</button></div></h1>
+      <p class="w3-text-grey"></p>
+	  <hr>
+	  
+	  <h1><b>Sticky Honey Beef Rice Bowl</b> <button class="w3-right w3-tag w3-dark-grey w3-round" onclick="add_recipe('Sticky Honey Beef Rice Bowl')">Add</button><div class="w3-right w3-tag w3-white"><button class="w3-right w3-tag w3-dark-grey w3-round" onclick="remove_recipe('Sticky Honey Beef Rice Bowl')">Remove</button></div></h1>
+      <p class="w3-text-grey"></p>
+	  <hr>
+	  
+	  <h1><b>Honey Garlic Beef Meatballs</b> <button class="w3-right w3-tag w3-dark-grey w3-round" onclick="add_recipe('Honey Garlic Beef Meatballs')">Add</button><div class="w3-right w3-tag w3-white"><button class="w3-right w3-tag w3-dark-grey w3-round" onclick="remove_recipe('Honey Garlic Beef Meatballs')">Remove</button></div></h1>
+      <p class="w3-text-grey"></p>
+	  <hr>
+	  
+	  <h1><b>Beef Meatballs and Redcurrant Sauce </b> <button class="w3-right w3-tag w3-dark-grey w3-round" onclick="add_recipe('Beef Meatballs and Redcurrant Sauce')">Add</button><div class="w3-right w3-tag w3-white"><button class="w3-right w3-tag w3-dark-grey w3-round" onclick="remove_recipe('Beef Meatballs and Redcurrant Sauce')">Remove</button></div></h1>
+      <p class="w3-text-grey"></p>
+	</div>
+
+	<div id="Pasta and Rice" class="w3-container menu w3-padding-32 w3-white">
+	  <h1><b>Bacon and mushroom risotto</b> <button class="w3-right w3-tag w3-dark-grey w3-round" onclick="add_recipe('Bacon and mushroom risotto')">Add</button><div class="w3-right w3-tag w3-white"><button class="w3-right w3-tag w3-dark-grey w3-round" onclick="remove_recipe('Bacon and mushroom risotto')">Remove</button></div></h1>
+      <p class="w3-text-grey"></p>
+      <hr>
+	  
+	  <h1><b>Bacon-crusted cheese & spinach penne bake</b> <button class="w3-right w3-tag w3-dark-grey w3-round" onclick="add_recipe('Bacon-crusted cheese & spinach penne bake')">Add</button><div class="w3-right w3-tag w3-white"><button class="w3-right w3-tag w3-dark-grey w3-round" onclick="remove_recipe('Bacon-crusted cheese & spinach penne bake')">Remove</button></div></h1>
+      <p class="w3-text-grey"></p>
+      <hr>
+	  
+	  <h1><b>Herby Beef Linguine with Spinach & Cheese</b> <button class="w3-right w3-tag w3-dark-grey w3-round" onclick="add_recipe('Herby Beef Linguine with Spinach & Cheese')">Add</button><div class="w3-right w3-tag w3-white"><button class="w3-right w3-tag w3-dark-grey w3-round" onclick="remove_recipe('Herby Beef Linguine with Spinach & Cheese')">Remove</button></div></h1>
+      <p class="w3-text-grey"></p>
+      <hr>
+	  
+	  <h1><b>Herby Meatballs and Linguine with Red Wine Sauce</b> <button class="w3-right w3-tag w3-dark-grey w3-round" onclick="add_recipe('Herby Meatballs and Linguine with Red Wine Sauce')">Add</button><div class="w3-right w3-tag w3-white"><button class="w3-right w3-tag w3-dark-grey w3-round" onclick="remove_recipe('Herby Meatballs and Linguine with Red Wine Sauce')">Remove</button></div></h1>
+      <p class="w3-text-grey"></p>
+      <hr>
+	  
+	  <h1><b>Bacon Linguine Amatricana</b> <button class="w3-right w3-tag w3-dark-grey w3-round" onclick="add_recipe('Bacon Linguine Amatricana')">Add</button><div class="w3-right w3-tag w3-white"><button class="w3-right w3-tag w3-dark-grey w3-round" onclick="remove_recipe('Bacon Linguine Amatricana')">Remove</button></div></h1>
+      <p class="w3-text-grey"></p>
+      <hr>
+	  
+	  <h1><b>Chinese style bacon and mushroom fried rice</b> <button class="w3-right w3-tag w3-dark-grey w3-round" onclick="add_recipe('Chinese style bacon and mushroom fried rice')">Add</button><div class="w3-right w3-tag w3-white"><button class="w3-right w3-tag w3-dark-grey w3-round" onclick="remove_recipe('Chinese style bacon and mushroom fried rice')">Remove</button></div></h1>
+      <p class="w3-text-grey"></p>
+      <hr>
+	  
+	  <h1><b>Creamy pesto pasta</b> <button class="w3-right w3-tag w3-dark-grey w3-round" onclick="add_recipe('Creamy pesto pasta')">Add</button><div class="w3-right w3-tag w3-white"><button class="w3-right w3-tag w3-dark-grey w3-round" onclick="remove_recipe('Creamy pesto pasta')">Remove</button></div></h1>
+      <p class="w3-text-grey"></p>
+      <hr>
+	  
+	  <h1><b>Herby meatballs and linguine</b> <button class="w3-right w3-tag w3-dark-grey w3-round" onclick="add_recipe('Herby meatballs and linguine')">Add</button><div class="w3-right w3-tag w3-white"><button class="w3-right w3-tag w3-dark-grey w3-round" onclick="remove_recipe('Herby meatballs and linguine')">Remove</button></div></h1>
+      <p class="w3-text-grey"></p>
+      <hr>
+	  
+	  <h1><b>Layered creamy chicken pasta bake</b> <button class="w3-right w3-tag w3-dark-grey w3-round" onclick="add_recipe('Layered creamy chicken pasta bake')">Add</button><div class="w3-right w3-tag w3-white"><button class="w3-right w3-tag w3-dark-grey w3-round" onclick="remove_recipe('Layered creamy chicken pasta bake')">Remove</button></div></h1>
+      <p class="w3-text-grey"></p>
+      <hr>
+	  
+	  <h1><b>Speedy beef penne</b> <button class="w3-right w3-tag w3-dark-grey w3-round" onclick="add_recipe('Speedy beef penne')">Add</button><div class="w3-right w3-tag w3-white"><button class="w3-right w3-tag w3-dark-grey w3-round" onclick="remove_recipe('Speedy beef penne')">Remove</button></div></h1>
+      <p class="w3-text-grey"></p>
+      <hr>
+	  
+	  <h1><b>Pronto Bacon Linguine</b> <button class="w3-right w3-tag w3-dark-grey w3-round" onclick="add_recipe('Pronto Bacon Linguine')">Add</button><div class="w3-right w3-tag w3-white"><button class="w3-right w3-tag w3-dark-grey w3-round" onclick="remove_recipe('Pronto Bacon Linguine')">Remove</button></div></h1>
+      <p class="w3-text-grey"></p>
+      <hr>
+	  
+	  <h1><b>Speedy sausage rigatoni</b> <button class="w3-right w3-tag w3-dark-grey w3-round" onclick="add_recipe('Speedy sausage rigatoni')">Add</button><div class="w3-right w3-tag w3-white"><button class="w3-right w3-tag w3-dark-grey w3-round" onclick="remove_recipe('Speedy sausage rigatoni')">Remove</button></div></h1>
+      <p class="w3-text-grey"></p>
+	</div>
+
+	<div id="Vegetarian" class="w3-container menu w3-padding-32 w3-white">
+	  <h1><b>Halloumi and pepper skewers</b> <button class="w3-right w3-tag w3-dark-grey w3-round" onclick="add_recipe('Halloumi and pepper skewers')">Add</button><div class="w3-right w3-tag w3-white"><button class="w3-right w3-tag w3-dark-grey w3-round" onclick="remove_recipe('Halloumi and pepper skewers')">Remove</button></div></h1>
+      <p class="w3-text-grey"></p>
+      <hr>
+	  
+	  <h1><b>Lime glazed halloumi</b> <button class="w3-right w3-tag w3-dark-grey w3-round" onclick="add_recipe('Lime glazed halloumi')">Add</button><div class="w3-right w3-tag w3-white"><button class="w3-right w3-tag w3-dark-grey w3-round" onclick="remove_recipe('Lime glazed halloumi')">Remove</button></div></h1>
+      <p class="w3-text-grey"></p>
+      <hr>
+	  
+	  <h1><b>Warm Pesto Roasted Veg Salad w/ Feta Cheese</b> <button class="w3-right w3-tag w3-dark-grey w3-round" onclick="add_recipe('Warm Pesto Roasted Veg Salad w/ Feta Cheese')">Add</button><div class="w3-right w3-tag w3-white"><button class="w3-right w3-tag w3-dark-grey w3-round" onclick="remove_recipe('Warm Pesto Roasted Veg Salad w/ Feta Cheese')">Remove</button></div></h1>
+      <p class="w3-text-grey"></p>
+      <hr>
+	  
+	  <h1><b>Pan-fried halloumi</b> <button class="w3-right w3-tag w3-dark-grey w3-round" onclick="add_recipe('Pan-fried halloumi')">Add</button><div class="w3-right w3-tag w3-white"><button class="w3-right w3-tag w3-dark-grey w3-round" onclick="remove_recipe('Pan-fried halloumi')">Remove</button></div></h1>
+      <p class="w3-text-grey"></p>
+      <hr>
+	  
+	  <h1><b>Pesto and Greek style cheese naanizza</b> <button class="w3-right w3-tag w3-dark-grey w3-round" onclick="add_recipe('Pesto and Greek style cheese naanizza')">Add</button><div class="w3-right w3-tag w3-white"><button class="w3-right w3-tag w3-dark-grey w3-round" onclick="remove_recipe('Pesto and Greek style cheese naanizza')">Remove</button></div></h1>
+      <p class="w3-text-grey"></p>
+      <hr>
+	  
+	  <h1><b>Sweet Potato Korma Style Curry</b> <button class="w3-right w3-tag w3-dark-grey w3-round" onclick="add_recipe('Sweet Potato Korma Style Curry')">Add</button><div class="w3-right w3-tag w3-white"><button class="w3-right w3-tag w3-dark-grey w3-round" onclick="remove_recipe('Sweet Potato Korma Style Curry')">Remove</button></div></h1>
+      <p class="w3-text-grey"></p>
+      <hr>
+	  
+	  <h1><b>Cheesy Ratatouille Pasta Bake</b> <button class="w3-right w3-tag w3-dark-grey w3-round" onclick="add_recipe('Cheesy Ratatouille Pasta Bake')">Add</button><div class="w3-right w3-tag w3-white"><button class="w3-right w3-tag w3-dark-grey w3-round" onclick="remove_recipe('Cheesy Ratatouille Pasta Bake')">Remove</button></div></h1>
+      <p class="w3-text-grey"></p>
+	  <hr>
+	  
+	  <h1><b>Sticky Glazed Halloumi Souvlaki</b> <button class="w3-right w3-tag w3-dark-grey w3-round" onclick="add_recipe('Sticky Glazed Halloumi Souvlaki')">Add</button><div class="w3-right w3-tag w3-white"><button class="w3-right w3-tag w3-dark-grey w3-round" onclick="remove_recipe('Sticky Glazed Halloumi Souvlaki')">Remove</button></div></h1>
+      <p class="w3-text-grey"></p>
+	  <hr>
+	  
+	  <h1><b>Loaded honey peri peri smashed potatoes</b> <button class="w3-right w3-tag w3-dark-grey w3-round" onclick="add_recipe('Loaded honey peri peri smashed potatoes')">Add</button><div class="w3-right w3-tag w3-white"><button class="w3-right w3-tag w3-dark-grey w3-round" onclick="remove_recipe('Loaded honey peri peri smashed potatoes')">Remove</button></div></h1>
+      <p class="w3-text-grey"></p>
+	</div>
+
+	<div id="Misc" class="w3-container menu w3-padding-32 w3-white">
+	  <h1><b>Black Bean and Sweet Potato Harissa Stew</b> <button class="w3-right w3-tag w3-dark-grey w3-round" onclick="add_recipe('Black Bean and Sweet Potato Harissa Stew')">Add</button><div class="w3-right w3-tag w3-white"><button class="w3-right w3-tag w3-dark-grey w3-round" onclick="remove_recipe('Black Bean and Sweet Potato Harissa Stew')">Remove</button></div></h1>
+      <p class="w3-text-grey"></p>
+      <hr>
+	  
+	  <h1><b>Cheesy Cajun loaded wedges</b> <button class="w3-right w3-tag w3-dark-grey w3-round" onclick="add_recipe('Cheesy Cajun loaded wedges')">Add</button><div class="w3-right w3-tag w3-white"><button class="w3-right w3-tag w3-dark-grey w3-round" onclick="remove_recipe('Cheesy Cajun loaded wedges')">Remove</button></div></h1>
+      <p class="w3-text-grey"></p>
+      <hr>
+	  
+	  <h1><b>Cheesy loaded sausages in buns</b> <button class="w3-right w3-tag w3-dark-grey w3-round" onclick="add_recipe('Cheesy loaded sausages in buns')">Add</button><div class="w3-right w3-tag w3-white"><button class="w3-right w3-tag w3-dark-grey w3-round" onclick="remove_recipe('Cheesy loaded sausages in buns')">Remove</button></div></h1>
+      <p class="w3-text-grey"></p>
+      <hr>
+	  
+	  <h1><b>Bacon Wrapped Hot Dog and Cheesy Chips</b> <button class="w3-right w3-tag w3-dark-grey w3-round" onclick="add_recipe('Bacon Wrapped Hot Dog and Cheesy Chips')">Add</button><div class="w3-right w3-tag w3-white"><button class="w3-right w3-tag w3-dark-grey w3-round" onclick="remove_recipe('Bacon Wrapped Hot Dog and Cheesy Chips')">Remove</button></div></h1>
+      <p class="w3-text-grey"></p>
+      <hr>
+	  
+	  <h1><b>Honey drizzled bacon-wrapped halloumi</b> <button class="w3-right w3-tag w3-dark-grey w3-round" onclick="add_recipe('Honey drizzled bacon-wrapped halloumi')">Add</button><div class="w3-right w3-tag w3-white"><button class="w3-right w3-tag w3-dark-grey w3-round" onclick="remove_recipe('Honey drizzled bacon-wrapped halloumi')">Remove</button></div></h1>
+      <p class="w3-text-grey"></p>
+	</div>
+
+	<div id="Lamb" class="w3-container menu w3-padding-32 w3-white">
+	  <h1><b>Herby lamb koftas on garlic naans</b> <button class="w3-right w3-tag w3-dark-grey w3-round" onclick="add_recipe('Herby lamb koftas on garlic naans')">Add</button><div class="w3-right w3-tag w3-white"><button class="w3-right w3-tag w3-dark-grey w3-round" onclick="remove_recipe('Herby lamb koftas on garlic naans')">Remove</button></div></h1>
+      <p class="w3-text-grey"></p>
+      <hr>
+	  
+	  <h1><b>Spiced Lamb Kathi Style Rolls</b> <button class="w3-right w3-tag w3-dark-grey w3-round" onclick="add_recipe('Spiced Lamb Kathi Style Rolls')">Add</button><div class="w3-right w3-tag w3-white"><button class="w3-right w3-tag w3-dark-grey w3-round" onclick="remove_recipe('Spiced Lamb Kathi Style Rolls')">Remove</button></div></h1>
+      <p class="w3-text-grey"></p>
+      <hr>
+	  
+	  <h1><b>Easy Lamb and Mushroom Stew</b> <button class="w3-right w3-tag w3-dark-grey w3-round" onclick="add_recipe('Easy Lamb and Mushroom Stew')">Add</button><div class="w3-right w3-tag w3-white"><button class="w3-right w3-tag w3-dark-grey w3-round" onclick="remove_recipe('Easy Lamb and Mushroom Stew')">Remove</button></div></h1>
+      <p class="w3-text-grey"></p>
+      <hr>
+	  
+	  <h1><b>Baharat lamb koftas and fig sauce</b> <button class="w3-right w3-tag w3-dark-grey w3-round" onclick="add_recipe('Baharat lamb koftas and fig sauce')">Add</button><div class="w3-right w3-tag w3-white"><button class="w3-right w3-tag w3-dark-grey w3-round" onclick="remove_recipe('Baharat lamb koftas and fig sauce')">Remove</button></div></h1>
+      <p class="w3-text-grey"></p>
+	</div>
+	
+	<div id="Fish" class="w3-container menu w3-padding-32 w3-white">
+	  <h1><b>---</b> <button class="w3-right w3-tag w3-dark-grey w3-round" onclick="add_recipe('---')">Add</button><div class="w3-right w3-tag w3-white"><button class="w3-right w3-tag w3-dark-grey w3-round" onclick="remove_recipe('---')">Remove</button></div></h1>
+      <p class="w3-text-grey"></p>
+	</div>
+	
+	<div id="Dessert" class="w3-container menu w3-padding-32 w3-white">
+	  <h1><b>Strawberry & Elderflower Frozen Yoghurt</b> <button class="w3-right w3-tag w3-dark-grey w3-round" onclick="add_recipe('Strawberry & Elderflower Frozen Yoghurt')">Add</button><div class="w3-right w3-tag w3-white"><button class="w3-right w3-tag w3-dark-grey w3-round" onclick="remove_recipe('Strawberry & Elderflower Frozen Yoghurt')">Remove</button></div></h1>
+      <p class="w3-text-grey"></p>
+      <hr>
+	  
+	  <h1><b>Banana Ice Cream (Dairy Free)</b> <button class="w3-right w3-tag w3-dark-grey w3-round" onclick="add_recipe('Banana Ice Cream (Dairy Free)')">Add</button><div class="w3-right w3-tag w3-white"><button class="w3-right w3-tag w3-dark-grey w3-round" onclick="remove_recipe('Banana Ice Cream (Dairy Free)')">Remove</button></div></h1>
+      <p class="w3-text-grey"></p>
+      <hr>
+	  
+	  <h1><b>Banana and Chocolate Ice Cream (Dairy Free)</b> <button class="w3-right w3-tag w3-dark-grey w3-round" onclick="add_recipe('Banana and Chocolate Ice Cream (Dairy Free)')">Add</button><div class="w3-right w3-tag w3-white"><button class="w3-right w3-tag w3-dark-grey w3-round" onclick="remove_recipe('Banana and Chocolate Ice Cream (Dairy Free)')">Remove</button></div></h1>
+      <p class="w3-text-grey"></p>
+      <hr>
+	  
+	  <h1><b>Raspberry & Passionfruit Ice Cream</b> <button class="w3-right w3-tag w3-dark-grey w3-round" onclick="add_recipe('Raspberry & Passionfruit Ice Cream')">Add</button><div class="w3-right w3-tag w3-white"><button class="w3-right w3-tag w3-dark-grey w3-round" onclick="remove_recipe('Raspberry & Passionfruit Ice Cream')">Remove</button></div></h1>
+      <p class="w3-text-grey"></p>
+	</div>
+	
+	<div id="Salad" class="w3-container menu w3-padding-32 w3-white">
+	  <h1><b>Roast Potato, Bacon and Crispy Kale Salad</b> <button class="w3-right w3-tag w3-dark-grey w3-round" onclick="add_recipe('Roast Potato, Bacon and Crispy Kale Salad')">Add</button><div class="w3-right w3-tag w3-white"><button class="w3-right w3-tag w3-dark-grey w3-round" onclick="remove_recipe('Roast Potato, Bacon and Crispy Kale Salad')">Remove</button></div></h1>
+      <p class="w3-text-grey"></p>
+	</div><br>
+
+  </div>
+</div>
+<!-- Cart Container -->
+<div class="w3-container w3-padding-64 w3-red w3-grayscale w3-xlarge" id="cart">
+  <div class="w3-content">
+    <h1 class="w3-center w3-jumbo" style="margin-bottom:64px">Cart</h1>
+    <h1><b>Selected recipies</b></h1>
+    <div class="w3-row" id="Cart_Div">
+      <div class="w3-col s6" id="Cart_Div_1">
+      </div>
+      <div class="w3-col s6" id="Cart_Div_2">
+      </div>
+    </div>
+  </div>
+</div>
+<div class="w3-container w3-black w3-padding-16 w3-xxlarge"></div>
+<!-- Ingredients -->
+<div class="w3-container w3-padding-64 w3-blue-grey w3-grayscale-min w3-xlarge">
+  <div class="w3-content">
+    <h1 class="w3-center w3-jumbo" style="margin-bottom:64px">Ingredients</h1>
+	<h1><b>Selected Ingredients</b></h1>
+	<div class="w3-row" id="Ingredient_Div">
+    </div>
+  </div>
+</div>
+<div class="w3-container w3-black w3-padding-16 w3-xxlarge"></div>
+<!-- Recipes -->
+<div class="w3-container w3-padding-64 w3-blue-grey w3-grayscale-min w3-xlarge">
+  <h1 class="w3-center w3-jumbo" style="margin-bottom:64px">Recipe</h1>
+  <h1><b>Selected recipies</b></h1>
+  <div class="row" id="Recipie_Div">
+  </div>
+
+<!-- The expanding image container -->
+  <div class="container">
+    <!-- Close the image -->
+    <span onclick="this.parentElement.style.display='none'" class="closebtn">&times;</span>
+
+    <!-- Expanded image -->
+    <img id="expandedImg" style="width:100%">
+
+    <!-- Image text -->
+    <div id="imgtext"></div>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer class="w3-center w3-black w3-padding-48 w3-xxlarge">
+  <p>Enjoy your meals</p>
+</footer>
+
+<script>
+// Cart as an object with recipe names as keys and their quantities as values
+let cart = {};
+
+let recipeDetails = {
+  'Butter chicken and basmati rice': {'Echalion Shallots': 1, 'Butter': 30, 'Basmati Rice': 150, 'Garlic Clove': 2, 'Diced Chicken Breast': 260, 'North Indian Style Spice Mix': 1, 'Tomato Puree': 30, 'Chicken Stock Paste': 1, 'Creme Fraiche': 150, 'Plain Naan Breads': 2},
+  'Thai style peanut chicken noodles': {'Garlic Clove': 1, 'Mangetout': 80, 'Lime': 1, 'Egg Noodle Nest': 2, 'Diced Chicken Breast': 260, 'Soy Sauce': 15, 'Peanut Butter': 30, 'Ketjap Manis': 25, 'Yellow Thai Style Paste': 45, 'Sugar': 5},
+  'Fragrant chicken coconut curry': { 'Garlic Clove': 3, 'Basmati Rice': 150, 'Diced Chicken Breast': 260, 'Ginger, Garlic & Lemongrass Puree': 15, 'Zanzibar Style Curry Powder': 2, 'Coconut Milk': 200, 'Chicken Stock Paste': 1, 'Lime': 1, 'Baby Spinach': 40, 'Butter': 20, 'Sugar': 5},
+  'Coronation chicken curry': { 'Basmati Rice': 150, 'Green Beans': 80, 'Garlic Clove': 1, 'Diced Chicken Breast': 260, 'Curry Powder': 1, 'Mango Chutney': 40, 'Soured Cream': 150},
+  'Beef mince, bean and red wine hotpot': { 'Baking Potato': 1, 'Garlic Clove': 1, 'Beef Mince': 120, 'Mixed Beans': 1,  'Tomato Passata': 1, 'Sun-Dried Tomato Paste': 25, 'Red Wine Stock Paste': 28, 'Mature Cheddar Cheese': 40, 'Broccoli':	1, 'Sugar': 5},
+  'Caprese quesadillas and wedges': { 'Potatoes': 450, 'Oregano': 1, 'Mature Cheddar Cheese': 140, 'Medium Tomato': 1, 'Balsamic Glaze': 1, 'Plain Taco Tortilla': 4, 'Tomato Puree': 60, 'Fresh Pesto': 32, 'Pea Shoots': 40, 'Mayonaise': 1},
+  'Beany beef tostadas rapidas': { 'Beef Mince': 120, 'Bell Pepper': 1, 'Mature Cheddar Cheese': 30, 'Red Kidney Beans': 1, 'Mexican Style Spice Mix': 1, 'Worcester Sauce': 15, 'Tomato Passata': 1, 'Beef Stock Paste': 10, 'Plain Taco Tortilla': 4, 'Soured Cream': 75, 'Sugar': 5},
+  'Mexican style beef loaded wedges': { 'Potatoes': 450, 'Garlic Clove': 1, 'Beef Mince': 240, 'Mexican Style Spice Mix': 1, 'Tomato Passata': 1, 'Beef Stock Paste': 1, 'Black Beans': 1, 'Mature Cheddar Cheese': 30, 'Soured Cream': 75, 'Chorizo': 90},
+  'Cheesy melt in the middle beef burger': { 'Potatoes': 450, 'Mature Cheddar Cheese': 30, 'Garlic Clove': 1, 'Sun-Dried Tomato Paste': 25, 'Panko Breadcrumbs': 10, 'Beef Mince': 240, 'Balsamic Glaze': 1, 'Pea Shoots': 40, 'Burger Bun': 2},
+  'Harissa spiced beef pilaf': { 'Red Onion': 1, 'Garlic clove': 1, 'Basimati Rice': 150, 'Beef Mince': 240, 'Coriander': 1, 'Harissa Paste': 50, 'Chermoula Spice Mix': 1, 'Beef Stock Paste': 10, 'Baby Spinach': 100, 'Greek Style Natural Yoghurt': 75, 'Toasted Flaked Almonds': 1},
+  'Smoky BBQ chicken & black bean loaded wedge': { 'Potatoes': 450, 'Spring Onion': 1, 'Carrot': 1, 'Mature Cheddar Cheese': 60, 'Black Beans': 1, 'Diced Chicken Breast': 260, 'BBQ Sauce': 64, 'Cider Vinegar': 15, 'Chipotle Paste': 20},
+  'Herby burgers and wedges': { 'Garlic Clove': 2, 'Green Chilli': 1, 'Mint': 1, 'Sweet Potato': 2, 'Chermoula Spice Mix': 1, 'Panko Breadcrumbs': 10, 'Lamb Mince': 300, 'Medium Tomato': 1, 'Baby Gem Lettuce': 1, 'Plain Naan Breads': 2, 'Greek Style Natural Yoghurt': 75},
+  'Bacon-crusted cheese & spinach penne bake': { 'Mature Cheddar Cheese': 90, 'Penne Pasta': 180, 'Baby Spinach': 40, 'Bacon Lardons': 60, 'Panko Breadcrumbs': 25, 'Chicken Stock Paste': 1, 'Mixed Herbs': 1, 'Creme Fraiche': 150, 'Balsamic Glaze': 1, 'Rocket Salad': 20, 'Butter': 20, 'Plain Flour': 5},
+  'Creamy pesto pasta': {'Garlic Clove': 1, 'Penne Pasta': 180, 'Creme Fraiche': 150, 'Vegetable Stock': 1, 'Peas': 120, 'Baby Spinach': 100, 'Fresh Pesto': 50, 'Grated Hard Italian Cheese': 20},
+  'Speedy beef penne': {'Beef Mince': 240, 'Garlic Clove': 1, 'Mixed Herbs': 1, 'Penne Pasta': 180, 'Worcester Sauce': 22, 'Finely Chopped Tomatoes': 1, 'Red Wine Stock Paste': 1, 'Mature Cheddar Cheese': 30, 'Baby Spinach': 40, 'Sugar': 5},
+  'Speedy sausage rigatoni': { 'Pork & Oregano Sausage Meat': 225, 'Rigatoni Pasta': 180, 'Balsamic Vinegar': 1, 'Sun-Dried Tomato Paste': 25, 'Finely Chopped Tomatoes with Onion & Garlic': 1, 'Chicken Stock Paste': 10, 'Peas': 120, 'Grated Hard Italian Style Cheese': 20, 'Sugar': 1},
+  'Halloumi and pepper skewers': { 'Potatoes': 450, 'Central American Style Spice Mix': 1, 'Bamboo Skewers': 4, 'Halloumi': 250, 'Bell Pepper': 1, 'Medium Tomato': 1, 'Baby Gem Lettuce': 1, 'Sweet Chilli Sauce': 32, 'Cider Vinegar': 15, 'Honey': 15, 'Mayonaise': 5},
+  'Honey drizzled bacon-wrapped halloumi': {'Halloumi': 250, 'Streaky Bacon': 4, 'Mayonaise': 32, 'Red Pepper Chilli Jelly': 25, 'Honey': 15},
+  'Lime glazed halloumi': { 'Basmati Rice': 150, 'Halloumi': 250, 'Garlic Clove': 2, 'Medium Tomato': 1, 'Lime': 1, 'Sweetcorn': 150, 'Central American Style Spice Mix': 1, 'Vegetable Stock Paste': 1, 'Sun-Dried Tomato Paste': 25, 'Greek Style Natural Yoghurt': 75, 'Sugar': 5, 'Butter': 20, 'Honey ': 5},
+  'Pan-fried halloumi': { 'Potatoes': 450, 'Bell Pepper': 1, 'Courgette': 1, 'Red Onion': 1, 'Garlic Clove': 1, 'Halloumi': 250, 'Oregano': 1, 'Fresh Pesto': 32},
+  'Sweet potato quesadillas': { 'Sweet Potato': 1, 'Medium Tomato': 1, 'Tomato Puree ': 30, 'Mature Cheddar Cheese': 80, 'Mexican Style Spice Mix': 1, 'Vegetable Stock Paste': 1, 'Plain Taco Tortilla': 6, 'Wild Rocket': 40, 'Chorizo': 90, 'Tomato Passata': 1},
+  'Baharat lamb koftas and fig sauce': { 'Potatoes': 450, 'Baby Plum Tomatoes': 125, 'Garlic Clove': 1, 'Red Onion': 1, 'Dried Oregano': 1, 'Panko Breadcrumbs': 10, 'Baharat Spice Mix': 1, 'Lamb Mince': 200, 'Fig Jam': 40, 'Balsamic Vinegar': 1, 'Rocket Salad': 40},
+  'Cheesy loaded sausages in buns': { 'Potatoes': 450, 'Smoked Paprika': 1, 'Hickory Smoked Sausage': 2, 'Onion': 1, 'Brioche Hot Dog Bun': 2, 'Sriracha Sauce': 15, 'Rocket Salad': 20, 'Mayonaise': 5, 'Mature Cheddar Cheese': 30, 'Sugar': 5},
+  'Creamy chicken and mushroom pie': {'Baking Potato': 1, 'Garlic Clove': 2, 'Diced Chicken Breast': 260, 'Carrot': 2, 'Panko Breadcrumbs': 25, 'Sliced Mushrooms': 80, 'Chicken Stock Paste': 	10, 'Creme Fraiche': 150, 'Grated Hard Italian Style Cheese': 20},
+  'Pesto and Greek style cheese naanizza': { 'Mature Cheddar Cheese': 60, 'Red Onion': 1, 'Plain Naan Breads': 2, 'Marinara Sauce': 120, 'Greek Style Salad Cheese': 50, 'Fresh Pesto': 32, 'Rocket Salad': 40, 'Balsamic Glaze': 1, 'Sugar': 5},
+  'Cajun beef mince and beans jacky-p': { 'Baking Potato': 2, 'Beef Mince': 120, 'Garlic Clove': 2, 'Red Kidney Beans': 1 , 'Cajun Spice Mix': 1, 'Tomato Passata': 1 , 'Chicken Stock Paste': 1, 'Mature Cheddar Cheese': 40, 'Baby Plum Tomatoes': 125, 'Lime': 1, 'Pea Shoots Salad': 40, 'Sugar': 5},
+  'Cheesy Cajun loaded wedges': { 'Potatoes': 700, 'Cajun Spice Mix': 1, 'Bell Pepper': 1, 'Garlic Clove': 2, 'Tomato Puree': 30, 'Sweetcorn': 150, 'Vegetable Stock Paste': 10, 'Lime': 1, 'Mature Cheddar Cheese': 60, 'Soured Cream': 75, 'Avocado': 1, 'Tomato Ketchup': 1},
+  'Tex Mex style beef mince tacos': { 'Beef Mince': 240, 'Garlic Clove': 1, 'Central American Style Spice Mix': 1, 'Tomato Puree': 30, 'Chicken Stock Paste': 10, 'Baby Gem Lettuce': 1, 'Medium Tomato': 1, 'Red Wine Vinegar': 12, 'Plain Taco Tortilla': 6, 'Soured Cream': 75, 'Sugar': 5},
+  'Chinese style bacon and mushroom fried rice': { 'Garlic Clove': 2, 'Spring Onion': 2, 'Salted Peanuts': 25, 'Jasmine Rice': 150, 'Bacon Lardons': 120, 'Sliced Mushrooms': 120, 'Ginger Puree': 15, 'Peas': 120, 'Hoisin Sauce': 32, 'Ketjap Manis': 25, 'Sambal': 15, 'Diced Chicken Breast': 260},
+  'Sweet and sour pineapple chicken': { 'Bell Pepper': 1, 'Spring Onion': 1, 'Garlic Clove': 2, 'Pineapple Rings': 1, 'Jasmine Rice': 150, 'Rice Vinegar': 15, 'Soy Sauce': 15, 'Honey': 15, 'Diced Chicken Breast': 260, 'Cornflour': 10, 'Tomato Ketchup': 1},
+  'Loaded honey peri peri smashed potatoes': { 'Salad Potatoes': 700,  'Peri Peri Seasoning': 2, 'Lemon': 1, 'Honey': 30, 'Sweetcorn': 150, 'Medium Tomato': 2, 'Avocado': 1, 'Greek Style Salad Cheese': 50, 'Soured Cream': 75},
+  'Layered creamy chicken pasta bake': { 'Courgette': 1, 'Rigatoni Pasta': 180, 'Diced Chicken Breast': 260, 'Chicken Stock Paste': 10, 'Finely Chopped Tomatoes': 1, 'Mixed Herbs': 1, 'Creme Fraiche': 75, 'Grated Hard Italian Style Cheese': 20, 'Sugar': 2},
+  'Honey garlic pork meatballs and noodles': { 'Garlic Clove': 2, 'Honey': 15, 'Panko Breadcrumbs': 10, 'Beef Mince': 240, 'Green Bell Pepper': 1, 'Onion': 1, 'Egg Noodle Nests': 2, 'Hoisin Sauce': 96, 'Soy Sauce': 15, 'Rice Vinegar': 15, 'Roasted White Sesame Seeds': 5},
+  'Beef rogan josh curry': { 'Tenderstem Broccoli': 80, 'Garlic Clove': 2, 'Ginger Puree': 15, 'Basmati Rice': 150, 'Beef Mince': 240, 'Rogan Josh Curry Paste': 50, 'Tomato Passata': 1, 'Chicken Stock Paste': 1, 'Greek Style Natural Yoghurt': 75, 'Chilli Flakes': 1, 'Sugar': 5},
+  'Beef and cheesy mash pie': { 'Potatoes': 450, 'Onion': 1, 'Garlic Clove': 2, 'Beef Mince': 240,  'Tomato Puree': 30, 'Red Wine Jus Paste': 22, 'Mixed Herbs': 1, 'Mature Cheddar Cheese': 30, 'Tenderstem Broccoli': 150, 'Sugar': 5},
+  'Bacon and mushroom risotto': { 'Onion': 1, 'Sliced Mushrooms': 120, 'Garlic Clove': 1, 'Chicken Stock Paste': 1, 'Bacon Lardons': 120, 'Risotto Rice': 175, 'Baby Spinach': 40, 'Grated Hard Italian Style Cheese': 40},
+  'Herby lamb koftas on garlic naans': { 'Garlic Clove': 2, 'Green Chilli': 1, 'Mint': 1, 'Sweet Potato': 2, 'Chermoula Spice Mix': 1, 'Panko Breadcrumbs': 10, 'Lamb Mince': 300, 'Medium Tomato': 1, 'Baby Gem Lettuce': 1, 'Plain Naan Breads': 2, 'Greek style Natural yoghurt': 75},
+  'Stir-fried honey sesame beef noodles': { 'Tenderstem Broccoli': 80, 'Carrot': 1, 'Garlic Clove': 2, 'Egg Noodle Nest': 2, 'Beef Mince': 240, 'Soy Sauce': 25, 'Ketjap Manis': 50, 'Honey': 15, 'Roasted White Sesame Seeds': 5, 'Tomato Ketchup': 1},
+  'Bacon Linguine Amatricana': { 'Garlic Clove': 1, 'Red Onion': 1, 'Bacon Lardons': 90, 'Sun-Dried Tomato Paste': 25, 'Linguine': 180, 'Finely Chopped Tomatoes with Basil': 1, 'Chicken Stock Paste': 10, 'Worcester Sauce': 15, 'Grated Hard Italian Style Cheese': 40, 'Baby Spinach': 40, 'Balsamic Glaze': 1, 'Diced Chicken Breast': 260, 'Sugar': 5},
+  'Black Bean and Sweet Potato Harissa Stew': { 'Sweet Potatoes': 2, 'Garlic Clove': 1, 'Black Beans': 1,  'Harissa Paste': 50, 'Chermoula Spice Mix': 1, 'Finely Chopped Tomatoes with Onion and Garlic': 1,  'Vegetable Stock Paste': 1, 'Baby Spinach': 40, 'Greek Style Natural Yoghurt': 75, 'Toasted Flaked Almonds': 15, 'Diced Chicken Breast': 260},
+  'Bulgogi Beef Bowl': { 'Jasmine Rice': 150, 'Tenderstem Broccoli': 80, 'Garlic Clove': 1, 'Beef Mince': 240, 'Salted Peanuts': 25, 'Lime': 1, 'Bulgogi Sauce': 150, 'Soy Sauce': 15},
+  'Herby Meatballs and Linguine': { 'Red Chilli': 1,  'Garlic Clove': 2, 'Panko Breadcrumbs': 10, 'Mixed Herbs': 1, 'Beef Mince': 240, 'Beef Stock Paste': 10, 'Finely Chopped Tomatoes': 1, 'Linguine': 180, 'Grated Hard Italian Style Cheese': 40, 'Pea Shoots': 40, 'Balsamic Glaze': 12, 'Bacon Lardons': 90, 'Sugar': 5},
+  'Fragrant Beef and Mushroom Stir Fry': { 'Beef Mince': 240, 'Basmati Rice': 150, 'Lime': 1, 'Pak Choi': 1, 'Sliced Mushrooms': 80, 'Ginger, Garlic & Lemongrass Puree': 15, 'Ketjap Manis': 50, 'Soy Sauce': 25, 'Chilli Flakes': 1, 'Sugar': 5},
+  'Cheesy Chorizo Topped Beef Enchiladas': { 'Garlic Clove': 1, 'Mature Cheddar Cheese': 90, 'Black Beans': 1,  'Potatoes': 450, 'Beef Mince': 240, 'Mexican Style Spice Mix': 1, 'Tomato Puree': 30, 'Red Wine Stock Paste': 28, 'Super Soft Tortilla with Whole Wheat': 4, 'Chorizo': 60, 'Avocado': 1, 'Soured Cream': 75},
+  'Chicken in Creamy Peppercorn Sauce': { 'Carrot': 3, 'Potatoes': 450, 'Chicken Breast': 2, 'Garlic Clove': 1, 'Cracked Black Pepper': 1, 'Cider Vinegar': 15, 'Chicken Stock Paste': 10, 'Creme Fraise': 75},
+  'Sweet Potato Korma Style Curry': { 'Sweet Potato': 2, 'Curry Powder': 1, 'Basmati Rice': 150, 'Tenderstem Broccoli': 80, 'Korma Style Paste': 50, 'Vegetable Stock Paste': 10, 'Creme Fraise': 150, 'Diced Chicken Breast': 260, 'Sugar': 5},
+  'Korma Spiced Pork or Beef Pilaf and Mango Chutney': { 'Garlic Clove': 2, 'Basmati Rice': 150, 'Ground Tumeric': 1, 'Pork or Beef Mince': 240,  'Chicken Stock Paste': 15, 'Korma Style Paste': 50, 'Peas': 120, 'Mango Chutney': 40, 'Greek Style Natural Yoghurt': 75},
+  'Roast Potato, Bacon and Crispy Kale Salad': { 'Potatoes': 450, 'Red Onion': 1, 'Carrot': 2, 'Garlic Clove': 1, 'Ground Cumin': 1, 'Honey': 30, 'Bacon Lardons': 90, 'Balsamic Glaze': 12, 'Chopped Kale': 100, 'Diced Chicken Breast': 260},
+  'Teriyaki Lemongrass Beef': { 'Mangetout': 80, 'Carrot': 1, 'Jasmine Rice': 150, 'Rice Vinegar': 15, 'Beef Mince': 240, 'Teriyaki Sauce': 100, 'Ginger, Garlic & Lemongrass Puree': 15, 'Indonesian Style Spice Mix': 1, 'Sugar': 5},
+  'Strawberry & Elderflower Frozen Yoghurt': {'Strawberries': 700, 'Icing Sugar': 75, 'Reduced Fat Greek Yoghurt': 500, 'Elderflower Cordial': 150, 'Double Cream': 150},
+  'Banana Ice Cream (Dairy Free)': {'Banana': 3, 'Coconut Milk': 400, 'Vanilla Extract': 2, 'Caster Sugar': 25},
+  'Banana and Chocolate Ice Cream (Dairy Free)': {'Banana': 3, 'Coconut Milk': 400, 'Vanilla Extract': 2, 'Caster Sugar': 25, 'Dark Chocolate': 50},
+  'Raspberry & Passionfruit Ice Cream': {'Banana': 3, 'Coconut Milk': 400, 'Raspberries': 200, 'Passionfruit': 2, 'Vanilla Extract': 2, 'Caster Sugar': 25},
+  'Beef Meatballs and Redcurrant Sauce': {'Potatoes': 450,'Broccoli Florets': 200,'Garlic Clove': 1,'Roasted Spices and Herbs mix': 1,'Panko Breadcrumbs': 10,'Beef Mince': 240,'Mature Cheddar Cheese': 30,'Red Wine Jus Paste': 15,'Redcurrant Jelly': 25},
+  'Cheesy Ratatouille Pasta Bake': {'Garlic Clove': 2,'Bell Pepper': 1,'Aubergine': 1,'Penne Pasta': 180,'Finely Chopped Tomatoes with Basil': 1,'Vegetable Stock Paste': 1,'Tomato Puree': 30,'Mixed Herbs': 1,'Mozzarella Cheese': 1,'Sugar for the Sauce': 1},
+  'Spiced Lamb Kathi Style Rolls': {'Potatoes': 450,'Bell Pepper': 1,'Korma Style Paste': 50,'Panko Breadcrumbs': 10,'Lamb Mince': 300,'Coriander': 1,'Greek Style Natural Yogurt': 75,'Soft Tortilla Wraps': 4,'Mango Chutney': 40,'Baby Leaf Salad Leaves': 50,'Olive Oil': 1,'Mayonnaise': 1},
+  'Sticky Honey Beef Rice Bowl': {'Pak Choi': 1,'Garlic Clove': 1,'Lime': 1,'Jasmine Rice': 150,'Pork or Beef Mince': 240,'Coleslaw': 120,'Ginger Puree': 15,'Ketjap Manis': 50,'Honey': 15,'Soy Sauce': 15},
+  'Easy Lamb and Mushroom Stew': {'Potatoes': 450,'Lamb Mince': 200,'Red Onion': 1,'Closed Cup Mushrooms': 150,'Carrot': 1,'Garlic Clove': 2,'Tomato Puree': 30,'Worcester Sauce': 15,'Chicken Stock Paste': 1,'Mixed Herbs': 1,'Chives': 1,'Plain Flour': 1},
+  'Pronto Bacon Linguine': {'Bacon Lardons': 60,'Courgette': 1,'Garlic Clove': 1,'Sliced Mushrooms': 120,'Linguine': 180,'Vegetable Stock Paste': 1,'Mixed Herbs': 1,'Creme Fraiche': 150,'Grated Hard Style Italian Cheese': 20},
+  'Chicken and Halloumi Shawarma': {'Baking Potato': 1,'Chermoula Spice Mix': 1,'Red Onion': 1,'Chicken Breast': 1,'Roasted Herb and Spice Blend': 1,'Garlic Clove': 2,'Low Fat Natural Yoghurt': 75,'Halloumi': 225,'Iceberg Lettuce': 1,'Medium Tomato': 1,'Greek Style Flatbreads': 2,'Olive Oil': 1},
+  'Sticky Glazed Halloumi Souvlaki': {'Potatoes': 450,'Roasted Spice & Herb Blend': 1,'Halloumi': 225,'Red Onion': 1,'Red Wine Vinegar': 24,'Medium Tomato': 1,'Baby Gem Lettuce': 1,'Harissa Paste': 50,'Greek Style Natural Yoghurt': 75,'Greek Style Flatbreads': 2,'Red Pepper Chilli Jelly': 25,'Olive Oil': 1,'Sugar': 1},
+  'Honey Garlic Beef Meatballs': {'Garlic Clove': 1,'Honey': 15,'Panko Breadcrumbs': 10,'Beef Mince': 240,'Green Pepper': 1,'Onion': 1,'Egg Noodle Nest': 2,'Hoisin Sauce': 96,'Soy Sauce': 15,'Rice Vinegar': 15,'Roasted White Sesame Seeds': 1},
+  'Hoisin Chicken and Plum Stir Fry': {'Basmati Rice': 150,'Diced Chicken': 210,'Plum': 2,'Pak Choi': 1,'Garlic Clove': 1,'Lime': 1,'Hoisin Sauce': 64,'Ketjap Manis': 25,'Soy Sauce': 15,'Sugar': 1},
+  'Thai Style Beef Bowl with Peppers and Rice': {'Bell Pepper': 1,'Beef Mince': 240,'Jasmine Rice': 150,'Thai Style Spice Blend': 1,'Mangetout': 80,'Lime': 1,'Ketjap Manis': 50,'Rice Vinegar': 15},
+  'Warm Pesto Roasted Veg Salad w/ Feta Cheese': {'Potatoes': 450,'Dried Oregano': 1,'Bell Pepper': 1,'Courgette': 1,'Balsamic Vinegar': 12,'Fresh Pesto': 50,'Baby Plum Tomatoes': 125,'Baby Leaf Salad': 50,'Bacon Lardons': 90,'Sugar': 1},
+  'Bacon Wrapped Hot Dog and Cheesy Chips': {'Potatoes': 450,'Hickory Smoked Sausage': 2,'Streaky Bacon': 4,'Onion': 1,'Baby Gem Lettuce': 1,'Chives': 1,'Blue Cheese': 30,'Ranch Dressing': 60,'Parmesan Cheese': 20,'Brioche Hot Dog Bun': 2,'Dijon Mustard': 10,'Butter': 20,'Tomato Ketchup': 1},
+  'Herby Beef Linguine with Spinach & Cheese': {'Beef Mince': 240,'Mixed Herbs': 1,'Linguine': 180,'Worcester Sauce': 15,'Finely Chopped Tomatoes with Onion & Garlic': 1,'Red Wine Jus Paste': 1,'Baby Spinach': 40,'Parmesan Cheese': 20,'Sugar': 1},
+  'Herby Meatballs and Linguine with Red Wine Sauce': {'Garlic Clove': 3,'Panko Breadcrumbs': 10,'Roasted Spice and Herb Blend': 1,'Beef Mince': 240,'Linguine': 180,'Finely Chopped Tomatoes with Basil': 1,'Red Wine Stock Paste': 1,'Sun-Dried Tomato Paste': 25,'Parmesan Cheese': 20,'Bacon Lardons': 90,'Butter': 20},
+  'Chicken & Serrano Ham Saltimbocca w/Mushroom Risotto': {'Chicken Stock Paste': 1,'Mushroom Broth Paste': 1,'Echallion Shallot': 1,'Garlic Clove': 1,'Closed Cup Mushrooms': 150,'Serrano Ham': 4,'Chicken Breast': 2,'Risotto Rice': 175,'Grated Hard Italian Style Cheese': 40,'Unsalted Butter': 30, 'Wild Rocket': 40}
+};
+
+let recipeImgs = {
+  'Butter chicken and basmati rice': "https://lh3.googleusercontent.com/d/1VUecUmtVUZoTYcgBwQ56S8UZ66xzQYWz=s2200?authuser=0",
+  'Thai style peanut chicken noodles': "https://lh3.googleusercontent.com/d/1Y8wQFSYaXh_Wk2N6WQXxT14LUgHTgHqy=s2200?authuser=0",
+  'Fragrant chicken coconut curry': "https://lh3.googleusercontent.com/d/1vdwy-dC0aqkNnzgcQw9c2gRwDRAAyZXe=s2200?authuser=0",
+  'Coronation chicken curry': "https://lh3.googleusercontent.com/d/1g8DsOhe4btSoy2vmrEEz6Rw8t0Pc2dVA=s2200?authuser=0",
+  'Beef mince, bean and red wine hotpot': "https://lh3.googleusercontent.com/d/1GIllj7D7tZmYBaNkHmYf5Rfz7bYfnAYV=s2200?authuser=0",
+  'Caprese quesadillas and wedges': "https://lh3.googleusercontent.com/d/1-bOBUZuLUdDAHyIfJArtkWPhIoGvNpfn=s2200?authuser=0",
+  'Mexican style beef loaded wedges': "https://lh3.googleusercontent.com/d/1aKfEA4qzhR2e3IMsKXUAogoaIbRjkWlC=s2200?authuser=0",
+  'Cheesy melt in the middle beef burger': "https://lh3.googleusercontent.com/d/1QajiE_gCApsIGEIujog6OWIbNnp6KCLb=s2200?authuser=0",
+  'Harissa spiced beef pilaf': "https://lh3.googleusercontent.com/d/1O3KnjuB8mp07EKOqfaU21YFVAHVUbgAa=s2200?authuser=0",
+  'Smoky BBQ chicken & black bean loaded wedge': "https://lh3.googleusercontent.com/d/1qryTQj1mBYplfsiqiTdFmGzc8W-Tgf01=s2200?authuser=0",
+  'Bacon-crusted cheese & spinach penne bake': "https://lh3.googleusercontent.com/d/1Ef3nAIzqktZuX1cYm6QX6CXsVmiylEKm=s2200?authuser=0",
+  'Creamy pesto pasta': "https://lh3.googleusercontent.com/d/15RwpVyiSHS5onf9fribdxs02mG__mfDE=s2200?authuser=0",
+  'Speedy beef penne': "https://lh3.googleusercontent.com/d/1crPxpFChOcjath4YPkqazIbL6kwBxXdl=s2200?authuser=0",
+  'Speedy sausage rigatoni': "https://lh3.googleusercontent.com/d/15stcmvrjG6bxh69Hef9-nGIGX3OWZSD_=s2200?authuser=0",
+  'Halloumi and pepper skewers': "https://lh3.googleusercontent.com/d/1O7BfakxBq9DcAxZFG8Tt2ko7lIUk6XwJ=s2200?authuser=0",
+  'Honey drizzled bacon-wrapped halloumi': "https://lh3.googleusercontent.com/d/1oYbJU_y7obs6K8qyMvBxQBp6ZPDMxb0c=s2200?authuser=0",
+  'Lime glazed halloumi': "https://lh3.googleusercontent.com/d/1WJQkNxOQBqfcAKgpMi4rHBK7d28J7zwe=s2200?authuser=0",
+  'Loaded honey peri peri smashed potatoes': "https://lh3.googleusercontent.com/d/15EyfvxqaLORBq0OH6XqeOzX3TN4SstuX=s2200?authuser=0",
+  'Layered creamy chicken pasta bake': "https://lh3.googleusercontent.com/d/1Ts2aO2oyi6egtxUql_ck1QgHtHFjlpvA=s2200?authuser=0",
+  'Honey garlic pork meatballs and noodles': "https://lh3.googleusercontent.com/d/1d3qDMOgDl1MU1DzWQY-9bLFa3cEsx3zf=s2200?authuser=0",
+  'Beef rogan josh curry': "https://lh3.googleusercontent.com/d/1WUOKgyyiJsEoIfWZVeoV4OlgP1lSrfwz=s2200?authuser=0",
+  'Beef and cheesy mash pie': "https://lh3.googleusercontent.com/d/1ZJ5YJzfM_WnFw5DuUNSjF9WO4cKPQ16m=s2200?authuser=0",
+  'Bacon and mushroom risotto': "https://lh3.googleusercontent.com/d/1CkVv3d5QeuGMw1SJEQ6lv40gup9fcBtt=s2200?authuser=0",
+  'Herby lamb koftas on garlic naans': "https://lh3.googleusercontent.com/d/1AjJWw8xHmttNH6tmVZehmFSkUXNEPZt5=s2200?authuser=0",
+  'Stir-fried honey sesame beef noodles': "https://lh3.googleusercontent.com/d/1YfiTGPzPaXV7HGorpuMZDTC9-rGIc3Qr=s2200?authuser=0",
+  'Bacon Linguine Amatricana': "https://lh3.googleusercontent.com/d/1JPX5zEHHUTBffV0fDY2VoJhqDmCCXah6=s2200?authuser=0",
+  'Black Bean and Sweet Potato Harissa Stew': "https://lh3.googleusercontent.com/d/13HqzVSV0qf4SvOpuih6LVLgYcWbfsNVR=s2200?authuser=0",
+  'Bulgogi Beef Bowl': "https://lh3.googleusercontent.com/d/1Rp6psu2LN-M8GPAZnRk4zHVtK9E2NBvW=s2200?authuser=0",
+  'Herby burgers and wedges': "https://lh3.googleusercontent.com/d/1pcCFiQpY7ocyG6mLRB4By2lQzmphyW3r=s2200?authuser=0",
+  'Cajun beef mince and beans jacky-p': "https://lh3.googleusercontent.com/d/1jmfkiYKhZXL8HUqfYS-T1YJ_RMsnJ4-q=s2200?authuser=0",
+  'Cheesy Cajun loaded wedges': "https://lh3.googleusercontent.com/d/1cSzQuQVz-6t8TqSXIpGTMuHVaoUdJFWW=s2200?authuser=0",
+  'Pesto and Greek style cheese naanizza': "https://lh3.googleusercontent.com/d/1GkwcI_IvqVS30nf95o3VMje6neOzzO2w=s2200?authuser=0",
+  'Creamy chicken and mushroom pie': "https://lh3.googleusercontent.com/d/1NhkbDnRg3LkdNmVZ7YyRhU35LZbi13xX=s2200?authuser=0",
+  'Cheesy loaded sausages in buns': "https://lh3.googleusercontent.com/d/1BULT-xFPznbH54gsn1yzx9682mN64MlC=s2200?authuser=0",
+  'Baharat lamb koftas and fig sauce': "https://lh3.googleusercontent.com/d/1SpK0kcMLPUYJ02gAewZUe6nJ4GHYEKOA=s2200?authuser=0",
+  'Sweet potato quesadillas': "https://lh3.googleusercontent.com/d/1SBueTFp9Kie9q3rDdKw7j7K2K8SnMHIn=s2200?authuser=0",
+  'Pan-fried halloumi': "https://lh3.googleusercontent.com/d/1v_yhKzocZa-GvaaIA6UqZx7Jmdu7RDP5=s2200?authuser=0",
+  'Tex Mex style beef mince tacos': "https://lh3.googleusercontent.com/d/1y9HXdyZ-6H7ZnQo0kwQBOYTWjVGRcy8Y=s2200?authuser=0",
+  'Chinese style bacon and mushroom fried rice': "https://lh3.googleusercontent.com/d/1c7mub5cboao52NjOIZ019eUitkQht4Md=s2200?authuser=0",
+  'Sweet and sour pineapple chicken': "https://lh3.googleusercontent.com/d/1ZS1bGGcmqDxQ5WpFTBU9FQx8EEa-TMin=s2200?authuser=0",
+  'Herby Meatballs and Linguine': "https://lh3.googleusercontent.com/d/1hcFwLlOYaC3_R06oOBWWofhW_vYqBQqU=s2200?authuser=0",
+  'Fragrant Beef and Mushroom Stir Fry': "https://lh3.googleusercontent.com/d/1F3Zkt6oOjKaVkytvEsGa_PWtmlfn0SB7=s2200?authuser=0",
+  'Cheesy Chorizo Topped Beef Enchiladas': "https://lh3.googleusercontent.com/d/1oGzXecJP51W2tgb01NFoJYxhT0O16axq=s2200?authuser=0",
+  'Chicken in Creamy Peppercorn Sauce': "https://lh3.googleusercontent.com/d/1I2ltRRLHprv5lgGdrLUmWCQ3CO4o3fRg=s2200?authuser=0",
+  'Sweet Potato Korma Style Curry': "https://lh3.googleusercontent.com/d/12_39TiBojBIPHohOJ0rI-JG6UGqVxQ6P=s2200?authuser=0",
+  'Korma Spiced Pork or Beef Pilaf and Mango Chutney': "https://lh3.googleusercontent.com/d/1-LMTXwdMHqO1xhfOuq7-2i5f3bFkZmlD=s2200?authuser=0",
+  'Roast Potato, Bacon and Crispy Kale Salad': "https://lh3.googleusercontent.com/d/17WV8Jvl39sQuaJU5UV7ipXGp-05r7Myw=s2200?authuser=0",
+  'Teriyaki Lemongrass Beef': "https://lh3.googleusercontent.com/d/1urpdrOtlBy7us_gtsNgNnge0C5R_Zmgz=s2200?authuser=0",
+  'Strawberry & Elderflower Frozen Yoghurt': "https://lh3.googleusercontent.com/d/1dIHhywIxz1TdxtwoUS1vh4h4FxOk5HxI=s2200?authuser=0",
+  'Banana Ice Cream (Dairy Free)': "https://lh3.googleusercontent.com/d/1dIHhywIxz1TdxtwoUS1vh4h4FxOk5HxI=s2200?authuser=0",
+  'Banana and Chocolate Ice Cream (Dairy Free)': "https://lh3.googleusercontent.com/d/1dIHhywIxz1TdxtwoUS1vh4h4FxOk5HxI=s2200?authuser=0",
+  'Raspberry & Passionfruit Ice Cream': "https://lh3.googleusercontent.com/d/1dIHhywIxz1TdxtwoUS1vh4h4FxOk5HxI=s2200?authuser=0",
+  'Beany beef tostadas rapidas': "https://lh3.googleusercontent.com/d/1yBxcgKnx1mHqkw9_0O8kKqEqHHy6FVsv=s2200?authuser=0",
+  'Beef Meatballs and Redcurrant Sauce': "https://lh3.googleusercontent.com/d/1r_YOoCglDloWPWMqKuk7U5TbjXI3IaVz=s2200?authuser=0",
+  'Cheesy Ratatouille Pasta Bake': "https://lh3.googleusercontent.com/d/1Dj5M0aDqEofWQ4zCKim7t-kqBhtFskZD=s2200?authuser=0",
+  'Spiced Lamb Kathi Style Rolls': "https://lh3.googleusercontent.com/d/1_P2qjwKl-8stdR6fXSQMM9UHZBHfveDD=s2200?authuser=0",
+  'Sticky Honey Beef Rice Bowl': "https://lh3.googleusercontent.com/d/1pxRWh9WrmqYy6RiS38FLfzj16myR9pfJ=s2200?authuser=0",
+  'Easy Lamb and Mushroom Stew': "https://lh3.googleusercontent.com/d/15Ban5BVlccSWkU470xZIakLVK14KR80V=s2200?authuser=0",
+  'Pronto Bacon Linguine': "https://lh3.googleusercontent.com/d/1Juo16aBNVq5rAUFEFL6NAvJkXtjRSFbs=s2200?authuser=0",
+  'Chicken and Halloumi Shawarma': "https://lh3.googleusercontent.com/d/1sOxixEvr_BFYQQKH-PTYjg3VLo0Hx7KW=s2200?authuser=0",
+  'Sticky Glazed Halloumi Souvlaki': "https://lh3.googleusercontent.com/d/1CDfPWTzP3WEfGWOkccAT_fLumSh47-Ys=s2200?authuser=0",
+  'Honey Garlic Beef Meatballs': "https://lh3.googleusercontent.com/d/1d3qDMOgDl1MU1DzWQY-9bLFa3cEsx3zf=s2200?authuser=0",
+  'Hoisin Chicken and Plum Stir Fry': "https://lh3.googleusercontent.com/d/11IOwkUFY-FSjh02ggQ5_4Ua1SQu48yYJ=s2200?authuser=0",
+  'Thai Style Beef Bowl with Peppers and Rice': "https://lh3.googleusercontent.com/d/1btWG0UPkZk-sjZdQ0JEfNDU1FX_kBH5s=s2200?authuser=0",
+  'Warm Pesto Roasted Veg Salad w/ Feta Cheese': "https://lh3.googleusercontent.com/d/1kpFMV0hDVbjUgsEikvhCvmNffcOOU6HU=s2200?authuser=0",
+  'Bacon Wrapped Hot Dog and Cheesy Chips': "https://lh3.googleusercontent.com/d/18SE5VY8yLehilDJ-PGH2oWF2gK9SWfFl=s2200?authuser=0",
+  'Herby Beef Linguine with Spinach & Cheese': "https://lh3.googleusercontent.com/d/1dW7B7LVp4niw3c8Y84AiN5xY6Mtta3e1=s2200?authuser=0",
+  'Chicken & Serrano Ham Saltimbocca w/Mushroom Risotto': "https://lh3.googleusercontent.com/d/1TjRrB-nXgqE03gTk2JIZfXC8zTPpqukU=s2200?authuser=0",
+  'Mexican style Roasted sweet potato salad': "https://lh3.googleusercontent.com/d/1weKj6ZrclCM1aA-D5vUM9S1WMXzbfyAD=s2200?authuser=0"
+};
+
+function enlarge(imgs) {
+  var expandImg = document.getElementById("expandedImg");
+  var imgText = document.getElementById("imgtext");
+  expandImg.src = imgs.src;
+  imgText.innerHTML = imgs.alt;
+  expandImg.parentElement.style.display = "block";
+}
+
+function openMenu(evt, menuName) {
+  var i, x, tablinks;
+  x = document.getElementsByClassName("menu");
+  for (i = 0; i < x.length; i++) {
+     x[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablink");
+  for (i = 0; i < x.length; i++) {
+     tablinks[i].className = tablinks[i].className.replace(" w3-red", "");
+  }
+  document.getElementById(menuName).style.display = "block";
+  evt.currentTarget.firstElementChild.className += " w3-red";
+}
+
+function add_recipe(recipe) {
+  // increment the count of the selected recipe in the cart
+  cart[recipe] = (cart[recipe] || 0) + 1;
+  console.log(cart);
+  // get the cart divs
+  let cartDiv1 = document.getElementById('Cart_Div_1');
+  let cartDiv2 = document.getElementById('Cart_Div_2');
+  cartDiv1.innerHTML = '';
+  cartDiv2.innerHTML = '';
+  let totalIngredients = {};
+  let processedRecipes = {};
+
+  // iterate through the cart and update total ingredients needed
+  for (let recipe in cart) {
+    let recipeCount = cart[recipe];
+    let recipeIngredients = recipeDetails[recipe];
+    for (let ingredient in recipeIngredients) {
+      totalIngredients[ingredient] = (totalIngredients[ingredient] || 0) + recipeIngredients[ingredient] * recipeCount;
+    }
+  }
+
+  let i = 0;
+  for (let recipe in cart) {
+    // create a new element for each recipe in the cart
+    let newElem = document.createElement('p');
+    newElem.innerText = recipe + ': ' + cart[recipe];
+	let newButt_add = document.createElement('button');
+	newButt_add.textContent = "Add";
+	newButt_add.className = "w3-tag w3-dark-grey w3-round";
+	newButt_add.onclick = function() {
+      add_recipe(recipe);
+    };
+	let newButt_remove = document.createElement('button');
+	newButt_remove.textContent = "Remove";
+	newButt_remove.className = "w3-tag w3-dark-grey w3-round";
+	newButt_remove.onclick = function() {
+	  remove_recipe(recipe)
+	}
+	let newDiv = document.createElement('div');
+	newDiv.className = "column";
+	
+	let newImg = document.createElement('img');
+	newImg.src = recipeImgs[recipe];
+	newImg.alt = recipe;
+	newImg.className = "thumbnail";  // Add this line to add a class name to the img elements
+	newImg.onclick = function() {
+		enlarge(this);
+	}
+
+    // alternate between appending to the first and second cart div
+    if (i++ % 2 === 0) {
+      cartDiv1.appendChild(newElem);
+      cartDiv1.appendChild(newButt_add);
+      cartDiv1.appendChild(newButt_remove);
+    } else {
+      cartDiv2.appendChild(newElem);
+      cartDiv2.appendChild(newButt_add);
+      cartDiv2.appendChild(newButt_remove);
+    }
+	if (!processedRecipes[recipe]) { // Check if the recipe has not been processed before
+      processedRecipes[recipe] = true; // Mark the recipe as processed
+	  Recipie_Div.appendChild(newDiv);
+	  newDiv.appendChild(newImg);
+    }
+  }
+
+  // display the total ingredients needed
+  let ingredientsDiv = document.getElementById('Ingredient_Div');
+  ingredientsDiv.innerHTML = '';
+  for (let ingredient in totalIngredients) {
+    let newElem = document.createElement('p');
+    newElem.innerText = ingredient + ': ' + totalIngredients[ingredient];
+    ingredientsDiv.appendChild(newElem);
+  }
+}
+
+function remove_recipe(recipe) {
+  // Check if the recipe exists in the cart
+  if (cart[recipe]) {
+    // Decrement the count of the selected recipe in the cart
+    cart[recipe]--;
+
+    // If the count becomes zero, remove the recipe from the cart
+    if (cart[recipe] === 0) {
+      delete cart[recipe];
+    }
+
+    // Clear the cart divs
+    let cartDiv1 = document.getElementById('Cart_Div_1');
+    let cartDiv2 = document.getElementById('Cart_Div_2');
+	let recipeDiv = document.getElementById('Recipie_Div');
+    cartDiv1.innerHTML = '';
+    cartDiv2.innerHTML = '';
+	recipeDiv.innerHTML = '';
+	
+    let totalIngredients = {};
+    let processedRecipes = {};
+
+    // Update the cart display
+    let i = 0;
+    for (let recipe in cart) {
+      let newElem = document.createElement('p');
+      newElem.innerText = recipe + ': ' + cart[recipe];
+	  let newButt_add = document.createElement('button');
+	  newButt_add.textContent = "Add";
+	  newButt_add.className = "w3-tag w3-dark-grey w3-round";
+	  newButt_add.onclick = function() {
+        add_recipe(recipe);
+      };
+	  let newButt_remove = document.createElement('button');
+	  newButt_remove.textContent = "Remove";
+	  newButt_remove.className = "w3-tag w3-dark-grey w3-round";
+	  newButt_remove.onclick = function() {
+	    remove_recipe(recipe)
+	  }
+	  
+	  let newDiv = document.createElement('div');
+	  newDiv.className = "column";
+	
+	  let newImg = document.createElement('img'); // duplicates
+	  newImg.src = recipeImgs[recipe];
+	  newImg.alt = recipe;
+	  newImg.onclick = function() {
+	    enlarge(this);
+	  }
+	  
+    // alternate between appending to the first and second cart div
+      if (i++ % 2 === 0) {
+        cartDiv1.appendChild(newElem);
+        cartDiv1.appendChild(newButt_add);
+        cartDiv1.appendChild(newButt_remove);
+      } else {
+        cartDiv2.appendChild(newElem);
+        cartDiv2.appendChild(newButt_add);
+        cartDiv2.appendChild(newButt_remove);
+      }
+	  if (!processedRecipes[recipe]) { // Check if the recipe has not been processed before
+        processedRecipes[recipe] = true; // Mark the recipe as processed
+	    Recipie_Div.appendChild(newDiv);
+	    newDiv.appendChild(newImg);
+      }
+    }
+
+    // Update total ingredients needed
+    for (let recipe in cart) {
+      let recipeCount = cart[recipe];
+      let recipeIngredients = recipeDetails[recipe];
+      for (let ingredient in recipeIngredients) {
+        totalIngredients[ingredient] = (totalIngredients[ingredient] || 0) + recipeIngredients[ingredient] * recipeCount;
+      }
+    }
+
+    // Update the ingredients display
+    let ingredientsDiv = document.getElementById('Ingredient_Div');
+    ingredientsDiv.innerHTML = '';
+    for (let ingredient in totalIngredients) {
+      let newElem = document.createElement('p');
+      newElem.innerText = ingredient + ': ' + totalIngredients[ingredient];
+      ingredientsDiv.appendChild(newElem);
+    }
+  }
+}
+
+// Comment this line if you don't have an HTML element with id 'myLink'
+ document.getElementById("myLink").click();
+
+</script>
+</body>
+</html>
+
